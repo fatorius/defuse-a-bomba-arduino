@@ -6,6 +6,7 @@
 #include "seeds.h"
 #include "tempo.h"
 #include "fios.h"
+#include "rickroll.h"
 
 // objetos
 LiquidCrystal lcd(12,11,5,4,3,2);
@@ -17,10 +18,10 @@ cTimer fiosTimer(true);
 void explodir(){
   lcd.clear();
   lcd.setCursor(0, 0);
-  lcd.print("Cabummmmm");
+  lcd.print("Terrorist win");
 
   while (true){
-    tone(buzzer, 700);
+    nevergonnagiveyouup();
   }
 }
 
@@ -38,13 +39,13 @@ void printNoLCD(){
 }
 
 void setup(){
-  tempoRestante = 180;
+  tempoRestante = 10;
 
   gerarSeeds();
 
   tempoTimer.SetTimeOut(SEGUNDO);
   beepTimer.SetTimeOut(SEGUNDO);
-  fiosTimer.SetTimeOut(5 * SEGUNDO);
+  fiosTimer.SetTimeOut(0.25 * SEGUNDO);
 
   pinMode(buzzer, OUTPUT);
 
@@ -71,33 +72,11 @@ void loop(){
   }
 
   if (beepTimer.IsTimeOut(true)){
-    if (tempoRestante > 60){
-      beep();
-    }
-    else if (tempoRestante > 30){
-      beep2();
-    }
-    else{
-      beep3();
-    }
+    beep(tempoRestante);
+    beepTimer.SetTimeOut((tempoRestante / 9) * 100);
   }
 
   if (fiosTimer.IsTimeOut(true)){
     verificarFios();
-
-    Serial.print("Azul: ");
-    Serial.println(digitalRead(fioAzul));
-    Serial.print("Preto: ");
-    Serial.println(digitalRead(fioPreto));
-    Serial.print("Laranja: ");
-    Serial.println(digitalRead(fioLaranja));
-    Serial.print("Amarelo: ");
-    Serial.println(digitalRead(fioAmarelo));
-    Serial.print("Branco: ");
-    Serial.println(digitalRead(fioBranco));
-    Serial.print("Roxo: ");
-    Serial.println(digitalRead(fioRoxo));
-    Serial.println("=============================");
-    Serial.flush();
   }
 }

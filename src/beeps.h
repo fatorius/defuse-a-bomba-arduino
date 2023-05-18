@@ -9,8 +9,6 @@
 
 #include "beeps.h"
 
-void beep();
-void beep2();
-void beep3();
+void beep(int tempo);
 
 #endif
