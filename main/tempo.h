@@ -11,8 +11,6 @@
 
 extern int tempoRestante;
 
-int obterMinutos(int tempo);
-String obterSegundos(int tempo);
 void atualizarTempo();
 
 #endif

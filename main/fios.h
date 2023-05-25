@@ -7,6 +7,6 @@
     #include "WProgram.h"
 #endif
 
-void verificarFios();
+bool verificarFios(int seed);
 
 #endif

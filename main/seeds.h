@@ -7,7 +7,9 @@
     #include "WProgram.h"
 #endif
 
-extern int seed;
+extern int seedFios;
+extern int seedInfra;
+extern int seedLCD;
 
 void gerarSeeds();
 
